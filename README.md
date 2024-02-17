@@ -35,5 +35,11 @@ The files used to manage each mail list are placed at /var/spool/minimalist. You
 
 The /var/spool/maximalist may contain file lists.lst which contains the list of addresses of mail lists from the server that a user can subscribe to. The file is sent in reply to the info request.
 
+Now the minimalist MLM is installed on a server. But to complete the installation i.e. to setup some mail list we need to fulfil more setup. Let;s say we want to setup mail list test-me@example.com on the server that support mail for the example.com domain.
+
+First of all. in the directory /var/spool/minimalist/ we create directory matched the name of mail list. In our case it is test-me. The user from which the MTA is runnung must be the owner of this directory with the full rights.
+
+The directory must contain the file named 'list'. The file contains the list of emails of members of mail list -- each address in a new line. The file can contain comments started from the #sign. The directory can contain a file 'list-writers' that contains addresses which can post to the mail list but do not receive messages from this mail list.
+
 
   

@@ -2,7 +2,7 @@
 
 use strict;
 #
-# Copyright (c) 1999-2005 Vladimir Litovka <vlitovka@gmail.com>
+# Copyright (c) 1999-2005 Volodymyrr Litovka <vlitovka@gmail.com>
 # Copyright (c) 2013 Taras Heychenko <tasic@academ.kiev.ua>
 #
 # Minimalist - Next version of Minimalistic Mailing List Manager.

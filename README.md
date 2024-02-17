@@ -35,11 +35,30 @@ The files used to manage each mail list are placed at /var/spool/minimalist. You
 
 The /var/spool/maximalist may contain file lists.lst which contains the list of addresses of mail lists from the server that a user can subscribe to. The file is sent in reply to the info request.
 
-Now the minimalist MLM is installed on a server. But to complete the installation i.e. to setup some mail list we need to fulfil more setup. Let;s say we want to setup mail list test-me@example.com on the server that support mail for the example.com domain.
+Now the minimalist MLM is installed on a server. But to complete the installation i.e. to set up some mail list we need to fulfill more setup. Let's say we want to set up a mail list test-me@example.com on the server that supports mail for the example.com domain.
 
-First of all. in the directory /var/spool/minimalist/ we create directory matched the name of mail list. In our case it is test-me. The user from which the MTA is runnung must be the owner of this directory with the full rights.
+First of all. in the directory /var/spool/minimalist/ we create a directory that matches the name of the mail list. In our case it is test-me. The user from which the MTA is running must be the owner of this directory with full rights.
 
-The directory must contain the file named 'list'. The file contains the list of emails of members of mail list -- each address in a new line. The file can contain comments started from the #sign. The directory can contain a file 'list-writers' that contains addresses which can post to the mail list but do not receive messages from this mail list.
+The directory must contain the file named 'list'. The file contains the list of emails of members of the mail list -- each address in a new line. The file can contain comments starting from the # sign. The directory can contain a file 'list-writers' that contains addresses that can post to the mail list but do not receive messages from this mail list. F.e. if a mail list member can write from more than one address, but wants to receive mail to one address.
+
+The directory can contain the 'config' file that contains options specific for only that mail list. The possible options are described in the config file in this repo.
+
+There can be a 'footer' file in this directory. If it exists its content is added to the letter that is being sent to the mailing list. Also the directory can contain the 'info' file that is sent to the info request to that mailing list.
+
+The config set up you can see by running
+```
+minimalist.pl - <listname>
+```
+so in our case, it is 
+```
+minimalist.pl - test-me
+```
+And now we have to redirect the mail to the address of the mailing list to the processing program. I usually do it with the help of /etc/aliases (/etc/mail/aliases). But any other way will also work (f.e. via virtusertable). We add the following lines to /etc/aliases
+```
+test-me:   |/usr/local/sbin/maximalist.pl test-me
+test-me-owner:  postmaster
+```
+The second line contains the address of the administrator of the mailing list. Run newaliases if you use sendmail and your mailing list is ready to use.
 
 
   

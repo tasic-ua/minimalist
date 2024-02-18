@@ -33,7 +33,7 @@ minimalist.pl usually has the global config file, and besides that, it can have 
 
 The files used to manage each mail list are placed at /var/spool/minimalist. You can change the location in the global config file. You must create this directory and make its owner the user used to run the MTA.
 
-The /var/spool/maximalist may contain file lists.lst which contains the list of addresses of mail lists from the server that a user can subscribe to. The file is sent in reply to the info request.
+The /var/spool/minimalist may contain file lists.lst which contains the list of addresses of mail lists from the server that a user can subscribe to. The file is sent in reply to the info request.
 
 Now the minimalist MLM is installed on a server. But to complete the installation i.e. to set up some mail list we need to fulfill more setup. Let's say we want to set up a mail list test-me@example.com on the server that supports mail for the example.com domain.
 
@@ -55,7 +55,7 @@ minimalist.pl - test-me
 ```
 And now we have to redirect the mail to the address of the mailing list to the processing program. I usually do it with the help of /etc/aliases (/etc/mail/aliases). But any other way will also work (f.e. via virtusertable). We add the following lines to /etc/aliases
 ```
-test-me:   |/usr/local/sbin/maximalist.pl test-me
+test-me:   |/usr/local/sbin/minimalist.pl test-me
 test-me-owner:  postmaster
 ```
 The second line contains the address of the administrator of the mailing list. Run newaliases if you use sendmail and your mailing list is ready to use.
